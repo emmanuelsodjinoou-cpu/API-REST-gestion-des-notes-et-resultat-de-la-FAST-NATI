@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Connexion</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <img src="{{ url_for('static', filename='logo_unstim.png') }}"
+    class="logo-left">
+
+    <div class="header-center">
+
+        <h1>FAST-NATI</h1>
+
+        <p>Consultation des Résultats</p>
+
+    </div>
+
+    <img src="{{ url_for('static', filename='logo_fast.png') }}"
+    class="logo-right">
+
+</div>
+
+<div class="form-box">
+
+    <h2>Connexion Étudiant</h2>
+
+    <form method="POST">
+
+        <input type="text"
+        name="matricule"
+        placeholder="Ex : 11020ST123"
+        required>
+
+        <input type="password"
+        name="password"
+        placeholder="Mot de passe"
+        required>
+
+        <button type="submit">
+            Se connecter
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

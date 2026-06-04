@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Administration</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <img
+    src="{{ url_for('static', filename='logo_unstim.png') }}"
+    class="logo-left">
+
+    <div class="header-center">
+
+        <h1>FAST-NATI ADMIN</h1>
+
+        <p>
+            Gestion des Filières, Matières et Notes
+        </p>
+
+    </div>
+
+    <img
+    src="{{ url_for('static', filename='logo_fast.png') }}"
+    class="logo-right">
+
+</div>
+
+<div class="form-box">
+
+    <h2>Ajouter Filière</h2>
+
+    <form method="POST">
+
+        <input type="hidden"
+        name="action"
+        value="ajouter_filiere">
+
+        <input type="text"
+        name="nom_filiere"
+        placeholder="Nom Filière">
+
+        <button type="submit">
+            Ajouter Filière
+        </button>
+
+    </form>
+
+</div>
+
+<h2 class="titre-table">
+    Liste des Filières
+</h2>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+    </tr>
+
+    {% for f in filieres %}
+    <tr>
+        <td>{{ f.id }}</td>
+        <td>{{ f.nom }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<div class="form-box">
+
+    <h2>Ajouter Matière</h2>
+
+    <form method="POST">
+
+        <input type="hidden"
+        name="action"
+        value="ajouter_matiere">
+
+        <input type="text"
+        name="nom_matiere"
+        placeholder="Nom Matière">
+
+        <input type="number"
+        name="credit_matiere"
+        placeholder="Crédit">
+
+        <select name="filiere">
+
+            {% for f in filieres %}
+            <option value="{{ f.nom }}">
+                {{ f.nom }}
+            </option>
+            {% endfor %}
+
+        </select>
+
+        <button type="submit">
+            Ajouter Matière
+        </button>
+
+    </form>
+
+</div>
+
+<h2 class="titre-table">
+    Liste des Matières
+</h2>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Matière</th>
+        <th>Crédit</th>
+        <th>Filière</th>
+        <th>Action</th>
+    </tr>
+
+    {% for m in matieres %}
+    <tr>
+        <td>{{ m.id }}</td>
+        <td>{{ m.nom }}</td>
+        <td>{{ m.credit }}</td>
+        <td>{{ m.filiere }}</td>
+        <td>
+            <a href="/supprimer-matiere/{{ m.id }}"
+               onclick="return confirm('Supprimer cette matière ?')">
+               Supprimer
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<div class="form-box">
+
+    <h2>Ajouter Note</h2>
+
+    <form method="POST">
+
+        <input type="hidden"
+        name="action"
+        value="ajouter_note">
+
+        <input type="text"
+        name="matricule"
+        placeholder="Matricule">
+
+        <input type="text"
+        name="matiere"
+        placeholder="Matière">
+
+        <input type="number"
+        step="0.01"
+        name="note"
+        placeholder="Note">
+
+        <input type="number"
+        name="credit"
+        placeholder="Crédit">
+
+        <button type="submit">
+            Ajouter Note
+        </button>
+
+    </form>
+
+</div>
+
+<h2 class="titre-table">
+    Liste des Notes
+</h2>
+
+<table>
+
+    <tr>
+        <th>Matricule</th>
+        <th>Matière</th>
+        <th>Note</th>
+        <th>Crédit</th>
+        <th>Statut</th>
+    </tr>
+
+    {% for n in notes %}
+    <tr>
+
+        <td>{{ n.matricule }}</td>
+        <td>{{ n.matiere }}</td>
+        <td>{{ n.note }}</td>
+        <td>{{ n.credit }}</td>
+
+        <td>
+
+            {% if n.note >= 10 %}
+                VALIDÉ
+            {% else %}
+                NON VALIDÉ
+            {% endif %}
+
+        </td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
+
+<h2 class="titre-table">Liste des Étudiants</h2>
+
+<table>
+<tr>
+<th>ID</th>
+<th>Matricule</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>Action</th>
+</tr>
+
+{% for e in etudiants %}
+<tr>
+<td>{{ e.id }}</td>
+<td>{{ e.matricule }}</td>
+<td>{{ e.nom }}</td>
+<td>{{ e.prenom }}</td>
+<td>
+<a href="/supprimer-etudiant/{{ e.id }}"
+onclick="return confirm('Supprimer cet étudiant ?')">
+Supprimer
+</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2 class="titre-table">Résultats Généraux des Étudiants</h2>
+
+<table>
+<tr>
+<th>Numéro Matricule</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>Crédit</th>
+<th>Moyenne Générale</th>
+<th>Statut</th>
+</tr>
+
+{% for r in resultats %}
+<tr>
+<td>{{ r.matricule }}</td>
+<td>{{ r.nom }}</td>
+<td>{{ r.prenom }}</td>
+<td>{{ r.credit }}</td>
+<td>{{ r.moyenne }}/20</td>
+<td>{{ r.statut }}</td>
+</tr>
+{% endfor %}
+</table>

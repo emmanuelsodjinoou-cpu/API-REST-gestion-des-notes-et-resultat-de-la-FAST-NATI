@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Résultats</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h1>FAST-NATI</h1>
+
+</nav>
+
+<h2>
+
+    Résultats Étudiant
+
+</h2>
+
+<table>
+
+    <tr>
+
+        <th>Matière</th>
+
+        <th>Note</th>
+
+        <th>Crédit</th>
+
+        <th>Statut</th>
+
+    </tr>
+
+    {% for n in notes %}
+
+    <tr>
+
+        <td>{{ n.matiere }}</td>
+
+        <td>{{ n.note }}</td>
+
+        <td>{{ n.credit }}</td>
+
+        <td>
+
+            {% if n.note >= 10 %}
+
+                VALIDÉ
+
+            {% else %}
+
+                NON VALIDÉ
+
+            {% endif %}
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<h3>
+
+    Moyenne Générale :
+    {{ moyenne }}/20
+
+</h3>
+
+<a class="logout"
+href="/logout">
+
+    Déconnexion
+
+</a>
+
+</body>
+
+</html>

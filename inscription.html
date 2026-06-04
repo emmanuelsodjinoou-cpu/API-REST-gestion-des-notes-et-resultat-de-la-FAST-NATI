@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inscription</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+
+    <img src="{{ url_for('static', filename='logo_unstim.png') }}"
+    class="logo-left">
+
+    <div class="header-center">
+
+        <h1>FAST-NATI</h1>
+        <h2>UNSTIM-Faculté des Sciences et Techniques de Natitingou</h2>
+
+        <p>Inscription Étudiant</p>
+
+    </div>
+
+    <img src="{{ url_for('static', filename='logo_fast.png') }}"
+    class="logo-right">
+
+</div>
+
+<div class="form-box">
+
+    <h2>Créer un compte</h2>
+
+    <form method="POST">
+
+        <input type="text"
+        name="matricule"
+        placeholder="Matricule"
+        required>
+
+        <input type="text"
+        name="nom"
+        placeholder="Nom"
+        required>
+
+        <input type="text"
+        name="prenom"
+        placeholder="Prénom"
+        required>
+
+        <input type="email"
+        name="email"
+        placeholder="Email"
+        required>
+
+        <input type="password"
+        name="password"
+        placeholder="Mot de passe"
+        required>
+
+        <button type="submit">
+            S'inscrire
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
